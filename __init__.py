@@ -16,10 +16,10 @@ class TcMessages:
         self.message_body = msg
         if flow_id:
             self.flowId = flow_id
-            print('##teamcity[{} {} {} timestamp=\'{}\']'.format(self.message_name, self.message_body,
+            print('[Test Framework] ##teamcity[{} {} {} timestamp=\'{}\']'.format(self.message_name, self.message_body,
                                                              self.flowId, self.timestamp))
         else:
-            print('##teamcity[{} {} timestamp=\'{}\']'.format(self.message_name, self.message_body, self.timestamp))
+            print('[Test Framework] ##teamcity[{} {} timestamp=\'{}\']'.format(self.message_name, self.message_body, self.timestamp))
 
 
 while __name__ == '__main__':
