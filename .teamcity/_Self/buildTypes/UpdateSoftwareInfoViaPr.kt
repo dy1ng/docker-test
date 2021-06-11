@@ -62,7 +62,7 @@ object UpdateSoftwareInfoViaPr : BuildType({
                 git push origin patch-%teamcity.build.id%
                 json="{\"head\":\"patch-%teamcity.build.id%\", \"base\":\"${'$'}repo_head\", \"body\":\"${'$'}{pr_body_msg}\", \"title\":\"Update topics/preinstalled-software-on-teamcity-cloud-ubuntu-agents.md\"}"
                 echo "${'$'}json"
-                #curl -u dy1ng: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 -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/dy1ng/teamcity-documentation/pulls -d "${'$'}json"
+                #curl -u dy1ng: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 -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/dy1ng/teamcity-documentation/pulls -d "${'$'}json"
             """.trimIndent()
         }
         script {
