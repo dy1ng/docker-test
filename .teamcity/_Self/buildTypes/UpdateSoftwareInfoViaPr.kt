@@ -65,6 +65,15 @@ object UpdateSoftwareInfoViaPr : BuildType({
                 #curl -u dy1ng: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 -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/dy1ng/teamcity-documentation/pulls -d "${'$'}json"
             """.trimIndent()
         }
+        script {
+            name = "Find and close old PRs"
+            scriptContent = """
+                #curl -u dy1ng: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 -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/dy1ng/teamcity-documentation/pulls -d "${'$'}json"
+                
+                #Get list of PRs
+                PRS=${'$'}(curl -u dy1ng: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 -X GET -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/dy1ng/teamcity-documentation/pulls)
+            """.trimIndent()
+        }
     }
 
     dependencies {
