@@ -66,7 +66,7 @@ object UpdateSoftwareInfoViaPr : BuildType({
             """.trimIndent()
         }
         script {
-            name = "Find and close old PRs (1)"
+            name = "Find and close old PRs"
             scriptContent = """
                 #curl -u dy1ng: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 -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/dy1ng/teamcity-documentation/pulls -d "${'$'}json"
                 
