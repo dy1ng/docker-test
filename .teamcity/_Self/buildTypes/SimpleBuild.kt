@@ -47,10 +47,6 @@ object SimpleBuild : BuildType({
             executionMode = BuildStep.ExecutionMode.ALWAYS
             scriptContent = "echo Some text"
         }
-        step {
-            type = "TestProject1_MultipleVcsRoots"
-            executionMode = BuildStep.ExecutionMode.ALWAYS
-        }
         python {
             executionMode = BuildStep.ExecutionMode.ALWAYS
             command = script {
