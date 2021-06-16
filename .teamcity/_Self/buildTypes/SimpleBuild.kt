@@ -57,6 +57,13 @@ object SimpleBuild : BuildType({
                 content = """print("execute always")"""
             }
         }
+        script {
+            name = "check if alias works"
+            scriptContent = """
+                alias echo123="echo \"Alias works\""
+                echo123
+            """.trimIndent()
+        }
     }
 
     features {
