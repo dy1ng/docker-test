@@ -67,6 +67,10 @@ object UpdateSoftwareInfoViaPr : BuildType({
                 curl -u dy1ng:%github_token% -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/dy1ng/teamcity-documentation/pulls -d "${'$'}json"
             """.trimIndent()
         }
+        script {
+            name = "Generate requirements.txt"
+            scriptContent = """echo "PyGithub==1.55" > requirements.txt"""
+        }
         python {
             name = "Cleanup old PRs and patch branches"
             environment = venv {
@@ -109,10 +113,6 @@ object UpdateSoftwareInfoViaPr : BuildType({
                             delete_branch(branch, repo)
                 """.trimIndent()
             }
-        }
-        script {
-            name = "Generate requirements.txt"
-            scriptContent = """echo "PyGithub==1.55" > requirements.txt"""
         }
     }
 
