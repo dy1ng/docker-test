@@ -13,7 +13,7 @@ object UpdateSoftwareInfoViaPr : BuildType({
     }
 
     vcs {
-        root(_Self.vcsRoots.HttpsGithubComDy1ngTeamcityDocumentation)
+        root(_Self.vcsRoots.HttpsGithubComDy1ngTeamcityDocumentation, "+:scripts")
     }
 
     steps {
