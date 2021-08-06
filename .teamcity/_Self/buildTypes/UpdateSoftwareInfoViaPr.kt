@@ -83,8 +83,8 @@ object UpdateSoftwareInfoViaPr : BuildType({
                 </chunk> 
                 EOM
                 )
-                body_ubuntu=${'$'}(cat ../scripts/ubuntu/software.report.md)
-                body_windows=${'$'}(cat ../scripts/windows/software.report.md)
+                body_ubuntu=${'$'}(cat software.report.md)
+                body_windows=${'$'}(cat software.report.md)
                 
                 echo "###### Write software reports files"
                 cat > topics/preinstalled-software-on-teamcity-cloud-ubuntu-agents.md << EOM
