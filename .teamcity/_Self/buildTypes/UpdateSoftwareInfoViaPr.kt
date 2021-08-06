@@ -20,51 +20,91 @@ object UpdateSoftwareInfoViaPr : BuildType({
         script {
             name = "Checkout into a new branch and create a PR"
             scriptContent = """
-                pr_body_msg="PR created by %teamcity.serverUrl%/buildConfiguration/%system.teamcity.buildType.id%/%teamcity.build.id%"
-                commit_msg="topics/preinstalled-software-on-teamcity-cloud-ubuntu-agents.md: update software list"
+                #!/bin/bash
                 
-                #if [[ ${'$'}(git status) == *"fatal: not a git repository"* ]]
-                #then
-                #	git init
-                #fi
-                remotes=${'$'}(git remote -v | grep "https://github.com/JetBrains/teamcity-documentation.git" | wc -l)
-                if [[ ${'$'}remotes -eq 0 ]] 
+                pr_body_msg="PR created by %teamcity.serverUrl%/buildConfiguration/%system.teamcity.buildType.id%/%teamcity.build.id%"
+                commit_msg="update agents' preinstalled software list"
+                
+                echo "###### Check if the script runs is in a git repository"
+                if [ -d .git ]
                 then
-                	git remote add upstream https://github.com/JetBrains/teamcity-documentation.git
+                    echo "######### It is. Proceeding."
+                else
+                    echo "######### It is not. Something is wrong. Probably checkout rules. Exiting"
+                    exit 1
+                fi
+                echo "######"
+                
+                echo "###### Set username and email for this repository"
+                git config user.name %teamcity.cloud.documentation.git.user.name%
+                git config user.email %teamcity.cloud.documentation.git.user.email%
+                
+                remotes=${'$'}{'${'$'}'}(git remote -v | grep "https://github.com/%teamcity.cloud.documentation.repo_name%.git" | wc -l)
+                if [[ ${'$'}{'${'$'}'}remotes -eq 0 ]] 
+                then
+                    echo "######### Add upstream remote"
+                	exec git remote add upstream https://github.com/%teamcity.cloud.documentation.repo_name%.git
+                    echo "######### Current remotes list:"
+                    exec git remote -v
                 fi
                 
-                repo_head=${'$'}(git remote show upstream | awk '/HEAD branch/ {print ${'$'}NF}')
+                echo "###### Fetch, checkout a new temp branch from upstream's HEAD branch."
+                repo_head=${'$'}{'${'$'}'}(git remote show upstream | awk '/HEAD branch/ {print ${'$'}{'${'$'}'}NF}')
                 
-                git fetch upstream ${'$'}repo_head
-                git checkout -b patch-%teamcity.build.id% upstream/${'$'}repo_head
+                exec git fetch upstream ${'$'}{'${'$'}'}repo_head
+                exec git checkout -b %teamcity.cloud.documentation.branch.name.prefix%%teamcity.build.id% upstream/${'$'}{'${'$'}'}repo_head
+                echo "######"
                 
-                header=${'$'}(cat << EOM
+                header_ubuntu=${'$'}{'${'$'}'}(cat << EOM
                 [//]: # (title: Preinstalled Software on TeamCity Cloud Ubuntu Agents)
                 [//]: # (auxiliary-id: Preinstalled Software on TeamCity Cloud Ubuntu Agents)
                 
                 <chunk id="ubuntu-jb-agents">
                 EOM
                 )
-                footer=${'$'}(cat << EOM
+                header_windows=${'$'}{'${'$'}'}(cat << EOM
+                [//]: # (title: Preinstalled Software on TeamCity Cloud Windows Agents)
+                [//]: # (auxiliary-id: Preinstalled Software on TeamCity Cloud Windows Agents)
+                
+                <chunk id="windows-jb-agents">
+                EOM
+                )
+                footer=${'$'}{'${'$'}'}(cat << EOM
                 </chunk> 
                 EOM
                 )
-                body=${'$'}(cat software.report.md)
+                body_ubuntu=${'$'}{'${'$'}'}(cat ../scripts/ubuntu/software.report.md)
+                body_windows=${'$'}{'${'$'}'}(cat ../scripts/windows/software.report.md)
                 
+                echo "###### Write software reports files"
                 cat > topics/preinstalled-software-on-teamcity-cloud-ubuntu-agents.md << EOM
-                ${'$'}header
+                ${'$'}{'${'$'}'}header_ubuntu
                 
-                ${'$'}body
+                ${'$'}{'${'$'}'}body_ubuntu
                 
-                ${'$'}footer
+                ${'$'}{'${'$'}'}footer
                 EOM
+                cat > topics/preinstalled-software-on-teamcity-cloud-windows-agents.md << EOM
+                ${'$'}{'${'$'}'}header_windows
                 
-                git add topics/preinstalled-software-on-teamcity-cloud-ubuntu-agents.md
-                git commit -m "${'$'}commit_msg"
-                git push origin patch-%teamcity.build.id%
-                json="{\"head\":\"patch-%teamcity.build.id%\", \"base\":\"${'$'}repo_head\", \"body\":\"${'$'}{pr_body_msg}\", \"title\":\"Update topics/preinstalled-software-on-teamcity-cloud-ubuntu-agents.md\"}"
-                echo "${'$'}json"
-                curl -u dy1ng:%github_token% -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/dy1ng/teamcity-documentation/pulls -d "${'$'}json"
+                ${'$'}{'${'$'}'}body_windows
+                
+                ${'$'}{'${'$'}'}footer
+                EOM
+                echo "######"
+                
+                echo "###### Git add, commit, push temp branch to origin"
+                exec git add topics/preinstalled-software-on-teamcity-cloud-ubuntu-agents.md
+                exec git add topics/preinstalled-software-on-teamcity-cloud-windows-agents.md
+                exec git commit -m "${'$'}{'${'$'}'}commit_msg"
+                exec git push origin %teamcity.cloud.documentation.branch.name.prefix%%teamcity.build.id%
+                echo "######"
+                
+                json="{\"head\":\"%teamcity.cloud.documentation.branch.name.prefix%%teamcity.build.id%\", \"base\":\"${'$'}{'${'$'}'}repo_head\", \"body\":\"${'$'}{'${'$'}'}{pr_body_msg}\", \"title\":\"Update preinstalled software list for TCC agents\"}"
+                #echo "${'$'}{'${'$'}'}json"
+                echo "###### Create PR in documentation repo form temp branch"
+                curl -u %teamcity.cloud.documentation.token% -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/%teamcity.cloud.documentation.repo_name%/pulls -d "${'$'}{'${'$'}'}json"
+                echo "######"
             """.trimIndent()
         }
         script {
