@@ -8,6 +8,7 @@ object UpdateSoftwareInfoViaPr : BuildType({
     name = "Update Software Info via PR"
 
     params {
+        text("test.123.test", "test123", description = "User name", display = ParameterDisplay.HIDDEN, readOnly = true, allowEmpty = true)
         param("teamcity.cloud.documentation.repo_name", "dy1ng/teamcity-documentation")
         param("teamcity.cloud.documentation.git.user.name", "Mikhail Efremov")
         password("github_token", "credentialsJSON:c7d9a019-4a0e-4062-8f4c-467c55d64f54", display = ParameterDisplay.HIDDEN)
