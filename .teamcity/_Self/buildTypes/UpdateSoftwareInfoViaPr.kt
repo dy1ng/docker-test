@@ -113,7 +113,7 @@ object UpdateSoftwareInfoViaPr : BuildType({
                 json="{\"head\":\"%teamcity.cloud.documentation.branch.name.prefix%%teamcity.build.id%\", \"base\":\"${'$'}repo_head\", \"body\":\"${'$'}{pr_body_msg}\", \"title\":\"Update preinstalled software list for TCC agents\"}"
                 #echo "${'$'}json"
                 echo "###### Create PR in documentation repo form temp branch"
-                curl -u %teamcity.cloud.documentation.token% -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/%teamcity.cloud.documentation.repo_name%/pulls -d "${'$'}json"
+                curl --user "%teamcity.cloud.documentation.login%:%teamcity.cloud.documentation.token%" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/%teamcity.cloud.documentation.repo_name%/pulls -d "${'$'}json"
                 echo "######"
             """.trimIndent()
         }
