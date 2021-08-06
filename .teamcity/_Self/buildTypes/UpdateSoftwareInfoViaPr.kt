@@ -43,8 +43,8 @@ object UpdateSoftwareInfoViaPr : BuildType({
                 echo "######"
                 
                 echo "###### Set username and email for this repository"
-                git config user.name "%teamcity.cloud.documentation.git.user.name%" || exit 1
-                git config user.email "%teamcity.cloud.documentation.git.user.email%" || exit 1
+                git config --replace-all user.name "%teamcity.cloud.documentation.git.user.name%" || exit 1
+                git config --replace-all user.email "%teamcity.cloud.documentation.git.user.email%" || exit 1
                 echo "######"
                 
                 echo "###### Check remotes"
