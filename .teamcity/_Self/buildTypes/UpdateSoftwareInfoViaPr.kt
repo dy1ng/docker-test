@@ -13,6 +13,7 @@ object UpdateSoftwareInfoViaPr : BuildType({
         password("github_token", "credentialsJSON:c7d9a019-4a0e-4062-8f4c-467c55d64f54", display = ParameterDisplay.HIDDEN)
         password("hiddenToken", "credentialsJSON:64b6255c-89a5-4f74-add0-402ed09ee64b", display = ParameterDisplay.HIDDEN, readOnly = true)
         param("teamcity.cloud.documentation.branch.name.prefix", "dev-patch-")
+        param("teamcity.cloud.documentation.fork_name", "dy1ng/teamcity-documentation")
         param("teamcity.cloud.documentation.login", "dy1ng")
         param("teamcity.cloud.documentation.token", "%github_token%")
         param("teamcity.cloud.documentation.git.user.email", "mikhail.efremov@jetbrains.com")
