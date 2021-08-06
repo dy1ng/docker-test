@@ -42,17 +42,20 @@ object UpdateSoftwareInfoViaPr : BuildType({
                 echo "######"
                 
                 echo "###### Set username and email for this repository"
-                git config user.name %teamcity.cloud.documentation.git.user.name% || exit 1
-                git config user.email %teamcity.cloud.documentation.git.user.email% || exit 1
+                git config user.name "%teamcity.cloud.documentation.git.user.name%" || exit 1
+                git config user.email "%teamcity.cloud.documentation.git.user.email%" || exit 1
+                echo "######"
                 
+                echo "###### Check remotes"
                 remotes=${'$'}(git remote -v | grep "https://github.com/%teamcity.cloud.documentation.repo_name%.git" | wc -l)
                 if [[ ${'$'}remotes -eq 0 ]] 
                 then
                     echo "######### Add upstream remote"
-                	exec git remote add upstream https://github.com/%teamcity.cloud.documentation.repo_name%.git
+                    git remote add upstream https://github.com/%teamcity.cloud.documentation.repo_name%.git || exit 1
                     echo "######### Current remotes list:"
-                    exec git remote -v
+                    git remote -v || exit 1
                 fi
+                echo "######"
                 
                 echo "###### Fetch, checkout a new temp branch from upstream's HEAD branch."
                 repo_head=${'$'}(git remote show upstream | awk '/HEAD branch/ {print ${'$'}NF}')
@@ -79,8 +82,8 @@ object UpdateSoftwareInfoViaPr : BuildType({
                 </chunk> 
                 EOM
                 )
-                body_ubuntu=${'$'}(cat software.report.md)
-                body_windows=${'$'}(cat software.report.md)
+                body_ubuntu=${'$'}(cat ../scripts/ubuntu/software.report.md)
+                body_windows=${'$'}(cat ../scripts/windows/software.report.md)
                 
                 echo "###### Write software reports files"
                 cat > topics/preinstalled-software-on-teamcity-cloud-ubuntu-agents.md << EOM
@@ -103,7 +106,7 @@ object UpdateSoftwareInfoViaPr : BuildType({
                 git add topics/preinstalled-software-on-teamcity-cloud-ubuntu-agents.md || exit 1
                 git add topics/preinstalled-software-on-teamcity-cloud-windows-agents.md || exit 1
                 git commit -m "${'$'}commit_msg" || exit 1
-                git push https://%teamcity.cloud.documentation.login%:%teamcity.cloud.documentation.token%@github.com/%teamcity.cloud.documentation.repo_name% %teamcity.cloud.documentation.branch.name.prefix%%teamcity.build.id% || exit 1
+                git push https://%teamcity.cloud.documentation.login%:%teamcity.cloud.documentation.token%@github.com/%teamcity.cloud.documentation.fork_name% %teamcity.cloud.documentation.branch.name.prefix%%teamcity.build.id% || exit 1
                 echo "######"
                 
                 json="{\"head\":\"%teamcity.cloud.documentation.branch.name.prefix%%teamcity.build.id%\", \"base\":\"${'$'}repo_head\", \"body\":\"${'$'}{pr_body_msg}\", \"title\":\"Update preinstalled software list for TCC agents\"}"
