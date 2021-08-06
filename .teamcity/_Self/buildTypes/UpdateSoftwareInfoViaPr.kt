@@ -136,16 +136,20 @@ object UpdateSoftwareInfoViaPr : BuildType({
                     if __name__ == '__main__':
                         pr_list = []
                         branch_list = {}
-                        g = Github("%github_token%")
-                        docs_repo = g.get_repo("dy1ng/teamcity-documentation")
+                        g = Github("%teamcity.cloud.documentation.token%")
+                        docs_repo = g.get_repo("%teamcity.cloud.documentation.repo_name%")
                         all_open_prs = docs_repo.get_pulls(state='open')
                         # Filter PRs by login and name of head branches
                         for pr in all_open_prs:
-                            if pr.user.login == g.get_user().login and 'patch-' in pr.head.ref:
+                            if pr.user.login == g.get_user().login and '%teamcity.cloud.documentation.branch.name.prefix%' in pr.head.ref:
                                 pr_list.append(pr)
                         # Sort the list with PRs by create date and pop the most recent item
                         pr_list.sort(key=lambda x: x.created_at, reverse=True)
-                        pr_list.pop(0)
+                        if len(pr_list) > 0:
+                            pr_list.pop(0)
+                        else:
+                            print("No PRs found. Exiting.")
+                            exit(0)
                         for pr in pr_list:
                             print("Closing the following PR as obsolete:")
                             print(f"\tTitle: '{pr.title}'; URL: '{pr.html_url}'; Created at: '{pr.created_at}'")
