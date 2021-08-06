@@ -102,7 +102,7 @@ object UpdateSoftwareInfoViaPr : BuildType({
                 git add topics/preinstalled-software-on-teamcity-cloud-ubuntu-agents.md || exit 1
                 git add topics/preinstalled-software-on-teamcity-cloud-windows-agents.md || exit 1
                 git commit -m "${'$'}commit_msg" || exit 1
-                git push origin %teamcity.cloud.documentation.branch.name.prefix%%teamcity.build.id% || exit 1
+                git push https://%teamcity.cloud.documentation.login%:%teamcity.cloud.documentation.token%/github.com/%teamcity.cloud.documentation.repo_name% %teamcity.cloud.documentation.branch.name.prefix%%teamcity.build.id% || exit 1
                 echo "######"
                 
                 json="{\"head\":\"%teamcity.cloud.documentation.branch.name.prefix%%teamcity.build.id%\", \"base\":\"${'$'}repo_head\", \"body\":\"${'$'}{pr_body_msg}\", \"title\":\"Update preinstalled software list for TCC agents\"}"
