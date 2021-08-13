@@ -119,6 +119,7 @@ object UpdateSoftwareInfoViaPr : BuildType({
         }
         script {
             name = "Generate requirements.txt"
+            enabled = false
             scriptContent = """echo "PyGithub==1.55" > requirements.txt"""
         }
         python {
