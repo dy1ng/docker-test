@@ -123,6 +123,7 @@ object UpdateSoftwareInfoViaPr : BuildType({
         }
         python {
             name = "Cleanup old PRs and patch branches"
+            enabled = false
             environment = venv {
             }
             command = script {
