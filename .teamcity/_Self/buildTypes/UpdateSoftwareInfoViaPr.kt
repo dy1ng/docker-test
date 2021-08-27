@@ -173,6 +173,10 @@ object UpdateSoftwareInfoViaPr : BuildType({
     }
 
     dependencies {
+        artifacts(AbsoluteId("BajaniBotJava_Build")) {
+            buildRule = lastSuccessful()
+            artifactRules = "+:."
+        }
         artifacts(DownloadSoftwareReport) {
             buildRule = lastSuccessful()
             artifactRules = "+:software.report.md"
