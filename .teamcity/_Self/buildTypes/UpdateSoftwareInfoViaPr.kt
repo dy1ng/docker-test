@@ -182,9 +182,5 @@ object UpdateSoftwareInfoViaPr : BuildType({
                 artifactRules = "+:software.report.md"
             }
         }
-        artifacts(AbsoluteId("BajaniBotJava_Build")) {
-            buildRule = lastSuccessful()
-            artifactRules = "+:."
-        }
     }
 })
