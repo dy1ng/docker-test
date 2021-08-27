@@ -173,14 +173,9 @@ object UpdateSoftwareInfoViaPr : BuildType({
     }
 
     dependencies {
-        dependency(DownloadSoftwareReport) {
-            snapshot {
-            }
-
-            artifacts {
-                buildRule = lastSuccessful()
-                artifactRules = "+:software.report.md"
-            }
+        artifacts(DownloadSoftwareReport) {
+            buildRule = lastSuccessful()
+            artifactRules = "+:software.report.md"
         }
     }
 })
