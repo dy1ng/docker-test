@@ -173,15 +173,9 @@ object UpdateSoftwareInfoViaPr : BuildType({
     }
 
     dependencies {
-        dependency(DownloadSoftwareReport) {
-            snapshot {
-                onDependencyFailure = FailureAction.CANCEL
-            }
-
-            artifacts {
-                buildRule = lastSuccessful()
-                artifactRules = "+:software.report.md"
-            }
+        artifacts(DownloadSoftwareReport) {
+            buildRule = lastSuccessful()
+            artifactRules = "+:software.report.md"
         }
     }
 })
