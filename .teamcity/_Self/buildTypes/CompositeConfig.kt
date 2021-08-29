@@ -17,6 +17,7 @@ object CompositeConfig : BuildType({
             }
 
             artifacts {
+                buildRule = lastSuccessful()
                 artifactRules = "+:software.report.md => ubuntu/software.report.md"
             }
         }
