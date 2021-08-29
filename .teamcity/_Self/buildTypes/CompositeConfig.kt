@@ -12,7 +12,13 @@ object CompositeConfig : BuildType({
     }
 
     dependencies {
-        snapshot(UpdateSoftwareInfoViaPr) {
+        dependency(UpdateSoftwareInfoViaPr) {
+            snapshot {
+            }
+
+            artifacts {
+                artifactRules = "+:software.report.md => ubuntu/software.report.md"
+            }
         }
     }
 })
