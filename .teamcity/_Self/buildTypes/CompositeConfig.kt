@@ -10,4 +10,9 @@ object CompositeConfig : BuildType({
     vcs {
         showDependenciesChanges = true
     }
+
+    dependencies {
+        snapshot(UpdateSoftwareInfoViaPr) {
+        }
+    }
 })
