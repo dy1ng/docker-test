@@ -1,5 +1,6 @@
 package _Self.buildTypes
 
+import _Self.vcsRoots.HttpsGithubComDy1ngTcTestProjectMasterWPullRequests
 import jetbrains.buildServer.configs.kotlin.v2019_2.*
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildFeatures.commitStatusPublisher
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.script
@@ -31,6 +32,7 @@ object BuildCommitStatusPublisher : Template({
     features {
         commitStatusPublisher {
             id = "BUILD_EXT_2"
+            vcsRootExtId = "${HttpsGithubComDy1ngTcTestProjectMasterWPullRequests.id}"
             publisher = github {
                 githubUrl = "https://api.github.com"
                 authType = personalToken {
