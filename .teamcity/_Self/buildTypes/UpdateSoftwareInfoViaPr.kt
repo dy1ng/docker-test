@@ -172,6 +172,7 @@ object UpdateSoftwareInfoViaPr : BuildType({
         }
         script {
             name = "Make build successful"
+            enabled = false
             scriptContent = """echo "##teamcity[buildStatus status='SUCCESS']""""
         }
     }
