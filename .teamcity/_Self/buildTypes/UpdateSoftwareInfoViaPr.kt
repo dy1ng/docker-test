@@ -106,7 +106,7 @@ object UpdateSoftwareInfoViaPr : BuildType({
                 echo "###### Git add, commit, push temp branch to origin"
                 git add topics/preinstalled-software-on-teamcity-cloud-ubuntu-agents.md || exit 1
                 git add topics/preinstalled-software-on-teamcity-cloud-windows-agents.md || exit 1
-                git commit -m "${'$'}commit_msg" || echo "##teamcity[buildStatus status='SUCCESS' text='Update skipped. No new data to add.']" && exit 0
+                git commit -m "${'$'}commit_msg" || echo "######### There is nothing to commit, exiting..." && echo "##teamcity[buildStatus status='SUCCESS' text='Update skipped. No new data to add.']" && exit 0
                 git push https://%teamcity.cloud.documentation.login%:%teamcity.cloud.documentation.token%@github.com/%teamcity.cloud.documentation.fork_name% %teamcity.cloud.documentation.branch.name.prefix%%teamcity.build.id% || exit 1
                 echo "######"
                 
