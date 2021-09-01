@@ -170,6 +170,9 @@ object UpdateSoftwareInfoViaPr : BuildType({
                 """.trimIndent()
             }
         }
+        script {
+            scriptContent = """echo "##teamcity[buildStatus status='SUCCESS']""""
+        }
     }
 
     dependencies {
