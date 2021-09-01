@@ -175,6 +175,10 @@ object UpdateSoftwareInfoViaPr : BuildType({
             enabled = false
             scriptContent = """echo "##teamcity[buildStatus status='SUCCESS']""""
         }
+        script {
+            name = "Some step after update"
+            scriptContent = """echo "I'm the last step of the build!""""
+        }
     }
 
     dependencies {
