@@ -122,7 +122,7 @@ object UpdateSoftwareInfoViaPr : BuildType({
             name = "Generate requirements.txt"
             scriptContent = """
                 #echo "PyGithub==1.55" > requirements.txt
-                echo "./dist/${'$'}(ls dist | awk '{ print ${'$'}1}' }" > requirements.txt
+                echo "${'$'}(find ${'$'}(pwd) -f -name '*.whl')" > requirements.txt
             """.trimIndent()
         }
         python {
