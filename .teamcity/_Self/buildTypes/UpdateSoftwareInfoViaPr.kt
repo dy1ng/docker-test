@@ -121,7 +121,10 @@ object UpdateSoftwareInfoViaPr : BuildType({
         script {
             name = "Generate requirements.txt"
             enabled = false
-            scriptContent = """echo "PyGithub==1.55" > requirements.txt"""
+            scriptContent = """
+                #echo "PyGithub==1.55" > requirements.txt
+                echo "./dist/*.whl" > requirements.txt
+            """.trimIndent()
         }
         python {
             name = "Cleanup old PRs and patch branches"
