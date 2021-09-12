@@ -182,6 +182,8 @@ object UpdateSoftwareInfoViaPr : BuildType({
     }
 
     dependencies {
+        snapshot(AbsoluteId("PyGitHub_BuildWheel")) {
+        }
         artifacts(DownloadSoftwareReport) {
             buildRule = lastSuccessful()
             artifactRules = "+:software.report.md"
