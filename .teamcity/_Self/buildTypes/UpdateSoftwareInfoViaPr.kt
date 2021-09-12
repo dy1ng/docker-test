@@ -182,7 +182,14 @@ object UpdateSoftwareInfoViaPr : BuildType({
     }
 
     dependencies {
-        snapshot(AbsoluteId("PyGitHub_BuildWheel")) {
+        dependency(AbsoluteId("PyGitHub_BuildWheel")) {
+            snapshot {
+            }
+
+            artifacts {
+                buildRule = lastPinned("+:*")
+                artifactRules = "+:*.whl"
+            }
         }
         artifacts(DownloadSoftwareReport) {
             buildRule = lastSuccessful()
