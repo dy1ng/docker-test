@@ -26,6 +26,7 @@ object UpdateSoftwareInfoViaPr : BuildType({
     steps {
         script {
             name = "Checkout into a new branch and create a PR"
+            enabled = false
             scriptContent = """
                 #!/bin/bash
                 
