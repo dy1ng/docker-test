@@ -177,6 +177,7 @@ object UpdateSoftwareInfoViaPr : BuildType({
         }
         script {
             name = "Some step after update"
+            enabled = false
             scriptContent = """echo "I'm the last step of the build!""""
         }
     }
