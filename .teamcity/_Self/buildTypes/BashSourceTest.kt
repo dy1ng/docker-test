@@ -16,5 +16,9 @@ object BashSourceTest : BuildType({
                 EOM
             """.trimIndent()
         }
+        script {
+            name = "source the script"
+            scriptContent = "source source_test.sh"
+        }
     }
 })
