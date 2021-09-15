@@ -31,6 +31,7 @@ object Project : Project({
     buildType(BuildD)
     buildType(DefaultBranchTest)
     buildType(DownloadSoftwareReport)
+    buildType(BashSourceTest)
     buildType(AB)
     buildType(A2Develop)
     buildType(B1FinishBuildTriggers)
