@@ -6,6 +6,10 @@ import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.script
 object BashSourceTest : BuildType({
     name = "Bash Source test"
 
+    params {
+        param("env.TEST_PARAM", "DEFAULT")
+    }
+
     steps {
         script {
             name = "create sh. script"
