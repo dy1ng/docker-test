@@ -192,7 +192,10 @@ object UpdateSoftwareInfoViaPr : BuildType({
 
             artifacts {
                 buildRule = lastPinned("+:*")
-                artifactRules = "+:*.whl=>dist/"
+                artifactRules = """
+                    +:*.whl=>dist/
+                    +:wheelhouse/
+                """.trimIndent()
             }
         }
         artifacts(DownloadSoftwareReport) {
