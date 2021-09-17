@@ -128,7 +128,7 @@ object UpdateSoftwareInfoViaPr : BuildType({
         python {
             name = "Cleanup old PRs and patch branches"
             environment = venv {
-                pipArgs = "--no-index --find-links wheelhouse/"
+                pipArgs = "--no-index --find-links wheelhouse/ --upgrade pip"
             }
             command = script {
                 content = """
