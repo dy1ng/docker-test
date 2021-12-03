@@ -7,7 +7,7 @@ object ArtifactDependencyTest_DependentBuild : BuildType({
 
     artifactRules = """
         +:checksum
-        +:project
+        +:project => project
     """.trimIndent()
 
     vcs {
