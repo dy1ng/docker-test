@@ -8,6 +8,7 @@ import jetbrains.buildServer.configs.kotlin.v2019_2.projectFeatures.dockerRegist
 import jetbrains.buildServer.configs.kotlin.v2019_2.projectFeatures.githubConnection
 import jetbrains.buildServer.configs.kotlin.v2019_2.projectFeatures.gitlabConnection
 import jetbrains.buildServer.configs.kotlin.v2019_2.projectFeatures.nuGetFeed
+import jetbrains.buildServer.configs.kotlin.v2019_2.projectFeatures.s3Storage
 
 object Project : Project({
 
@@ -26,6 +27,7 @@ object Project : Project({
     buildType(B3Deploy)
     buildType(DefaultBranchDependencyTest)
     buildType(BuildA)
+    buildType(IncorrectXmlReportsPath)
     buildType(BuildB)
     buildType(SonarRunnerTest)
     buildType(BuildD)
@@ -137,20 +139,16 @@ object Project : Project({
             userName = "dy1ng"
             password = "credentialsJSON:b9428692-a455-4e1c-a8a1-cc7f67b6f6d5"
         }
-        feature {
+        s3Storage {
             id = "PROJECT_EXT_5"
-            type = "storage_settings"
-            param("aws.service.endpoint", "https://s3.us-east-2.amazonaws.com")
-            param("secure:aws.secret.access.key", "credentialsJSON:27183c04-9f97-472d-85de-c9d15232abab")
-            param("aws.external.id", "TeamCity-server-9ce8ebef-0ec7-4e50-9c53-1567435d2738")
-            param("aws.environment", "custom")
-            param("storage.name", "test.project_s3")
-            param("storage.s3.bucket.name", "mefremov-test")
-            param("storage.type", "S3_storage")
-            param("aws.access.key.id", "AKIA5JH2VERVDU5DXUML")
-            param("aws.credentials.type", "aws.access.keys")
-            param("aws.region.name", "us-east-2")
-            param("storage.s3.upload.presignedUrl.enabled", "true")
+            storageName = "test.project_s3"
+            bucketName = "mefremov-test"
+            accessKey = "credentialsJSON:27183c04-9f97-472d-85de-c9d15232abab"
+            awsEnvironment = custom {
+                endpoint = "https://s3.us-east-2.amazonaws.com"
+                awsRegionName = "us-east-2"
+            }
+            accessKeyID = "AKIA5JH2VERVDU5DXUML"
         }
         feature {
             id = "PROJECT_EXT_7"
