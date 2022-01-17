@@ -11,6 +11,12 @@ To apply the patch, change the buildType with id = 'BuildA'
 accordingly, and delete the patch script.
 */
 changeBuildType(RelativeId("BuildA")) {
+    params {
+        add {
+            param("env.GIT_TRACE", "/Users/mikhail.efremov/Downloads/git_trace.log")
+        }
+    }
+
     features {
         val feature1 = find<PullRequests> {
             pullRequests {
