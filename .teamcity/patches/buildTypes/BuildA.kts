@@ -18,6 +18,9 @@ changeBuildType(RelativeId("BuildA")) {
         add {
             param("env.GIT_TRACE", "/Users/mikhail.efremov/Downloads/git_trace.log")
         }
+        add {
+            param("env.GIT_TRACE_PERFORMANCE", "/Users/mikhail.efremov/Downloads/git_trace.log")
+        }
     }
 
     features {
