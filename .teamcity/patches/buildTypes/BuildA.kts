@@ -3,6 +3,8 @@ package patches.buildTypes
 import jetbrains.buildServer.configs.kotlin.v2019_2.*
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildFeatures.PullRequests
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildFeatures.pullRequests
+import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.ScriptBuildStep
+import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.v2019_2.ui.*
 
 /*
@@ -20,6 +22,31 @@ changeBuildType(RelativeId("BuildA")) {
         }
         add {
             param("env.GIT_TRACE_PERFORMANCE", "/Users/mikhail.efremov/Downloads/git_trace.log")
+        }
+    }
+
+    expectSteps {
+        script {
+            id = "RUNNER_5"
+            scriptContent = "echo %env.pass_for_docker%%"
+            dockerImagePlatform = ScriptBuildStep.ImagePlatform.Linux
+            dockerPull = true
+            dockerImage = "alpine:latest"
+        }
+        script {
+            id = "RUNNER_7"
+            enabled = false
+            scriptContent = "ssh -o StrictHostKeyChecking=no user:%env.pass_for_docker%@172.31.140.46"
+            dockerImagePlatform = ScriptBuildStep.ImagePlatform.Linux
+            dockerPull = true
+            dockerImage = "kroniak/ssh-client:latest"
+        }
+    }
+    steps {
+        update<ScriptBuildStep>(0) {
+            id = "RUNNER_5"
+            clearConditions()
+            dockerImage = ""
         }
     }
 
