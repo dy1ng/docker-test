@@ -13,6 +13,9 @@ accordingly, and delete the patch script.
 changeBuildType(RelativeId("BuildA")) {
     params {
         add {
+            param("env.GIT_CURL_VERBOSE", "/Users/mikhail.efremov/Downloads/git_trace.log")
+        }
+        add {
             param("env.GIT_TRACE", "/Users/mikhail.efremov/Downloads/git_trace.log")
         }
     }
