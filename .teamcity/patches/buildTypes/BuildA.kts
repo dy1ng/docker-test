@@ -21,10 +21,10 @@ changeBuildType(RelativeId("BuildA")) {
             param("teamcity.git.useBuildEnv", "true")
         }
         add {
-            param("env.GIT_TRACE_PERFORMANCE", "/Users/mikhail.efremov/Downloads/git_trace.log")
+            param("env.GIT_TRACE", "%teamcity.build.checkoutDir%/git_trace.log")
         }
         add {
-            param("env.GIT_TRACE", "%teamcity.build.checkoutDir%/git_trace.log")
+            param("env.GIT_TRACE_PERFORMANCE", "%teamcity.build.checkoutDir%/git_trace.log")
         }
     }
 
