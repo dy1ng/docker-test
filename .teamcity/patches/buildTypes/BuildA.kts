@@ -15,7 +15,7 @@ accordingly, and delete the patch script.
 changeBuildType(RelativeId("BuildA")) {
     params {
         add {
-            param("env.GIT_CURL_VERBOSE", "/Users/mikhail.efremov/Downloads/git_trace.log")
+            param("env.GIT_CURL_VERBOSE", "%teamcity.build.checkoutDir%/git_trace.log")
         }
         add {
             param("teamcity.git.useBuildEnv", "true")
