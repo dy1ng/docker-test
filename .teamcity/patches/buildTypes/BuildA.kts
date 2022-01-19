@@ -13,6 +13,14 @@ To apply the patch, change the buildType with id = 'BuildA'
 accordingly, and delete the patch script.
 */
 changeBuildType(RelativeId("BuildA")) {
+    check(artifactRules == "+:checksum") {
+        "Unexpected option value: artifactRules = $artifactRules"
+    }
+    artifactRules = """
+        +:checksum
+        +:git_trace.log
+    """.trimIndent()
+
     params {
         add {
             param("env.GIT_CURL_VERBOSE", "%teamcity.build.checkoutDir%/git_trace.log")
