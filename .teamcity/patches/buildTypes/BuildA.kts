@@ -18,7 +18,7 @@ changeBuildType(RelativeId("BuildA")) {
     }
     artifactRules = """
         +:checksum
-        git_trace.log
+        +:git_trace.log
     """.trimIndent()
 
     params {
