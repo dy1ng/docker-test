@@ -18,7 +18,7 @@ changeBuildType(RelativeId("BuildA")) {
     }
     artifactRules = """
         +:checksum
-        +:git_trace.log
+        +:%teamcity.build.checkoutDir%/git_trace.log
     """.trimIndent()
 
     params {
