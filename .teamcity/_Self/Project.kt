@@ -59,6 +59,10 @@ object Project : Project({
     template(BuildCommitStatusPublisher)
     template(SimpleBuildTemplate)
 
+    params {
+        param("bitbucket.Username", "")
+    }
+
     features {
         feature {
             id = "PROJECT_EXT_12"
