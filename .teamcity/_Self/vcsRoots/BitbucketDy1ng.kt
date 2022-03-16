@@ -10,6 +10,6 @@ object BitbucketDy1ng : GitVcsRoot({
     checkoutPolicy = GitVcsRoot.AgentCheckoutPolicy.USE_MIRRORS
     authMethod = password {
         userName = "%bitbucket.Username%"
-        password = ""
+        password = "credentialsJSON:58adb94d-0f89-451d-9070-3a40f77ac714"
     }
 })
