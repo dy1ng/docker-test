@@ -7,9 +7,9 @@ object BitbucketDy1ng : GitVcsRoot({
     name = "Bitbucket dy1ng"
     url = "https://dy1ng@bitbucket.org/dy1ng/dummy.repo.for.tc.git"
     branch = "refs/heads/master"
+    checkoutPolicy = GitVcsRoot.AgentCheckoutPolicy.USE_MIRRORS
     authMethod = password {
-        userName = "dy1ng"
-        password = "credentialsJSON:061c3284-ed9a-4803-87bf-67335f940739"
+        userName = "%bitbucket.Username%"
+        password = ""
     }
-    param("useAlternates", "true")
 })
