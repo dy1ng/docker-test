@@ -60,7 +60,7 @@ object Project : Project({
     template(SimpleBuildTemplate)
 
     params {
-        text("bitbucket.AppPassword", "cwwwa5svbwF2amA89Mrq", description = "Bitbucket.org App Password", display = ParameterDisplay.HIDDEN, allowEmpty = true)
+        password("bitbucket.AppPassword", "credentialsJSON:685b014c-35a2-48cb-b305-296e3f4ee59f", description = "Bitbucket.org App Password", display = ParameterDisplay.HIDDEN)
         param("bitbucket.Username", "dy1ng")
     }
 
