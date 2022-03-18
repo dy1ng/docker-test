@@ -21,6 +21,11 @@ changeBuildType(RelativeId("BuildA")) {
         +:git_trace.log
     """.trimIndent()
 
+    check(buildNumberPattern == "%build.counter%") {
+        "Unexpected option value: buildNumberPattern = $buildNumberPattern"
+    }
+    buildNumberPattern = "special-%build.counter%"
+
     params {
         add {
             param("env.GIT_CURL_VERBOSE", "%teamcity.build.checkoutDir%/git_trace.log")
