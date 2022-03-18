@@ -1,5 +1,6 @@
 package _Self.buildTypes
 
+import _Self.vcsRoots.HttpsGithubComDy1ngTcTestProjectMasterWPullRequests
 import jetbrains.buildServer.configs.kotlin.v2019_2.*
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildFeatures.commitStatusPublisher
 import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.vcs
@@ -28,12 +29,14 @@ object AB : BuildType({
 
     features {
         commitStatusPublisher {
+            vcsRootExtId = "${HttpsGithubComDy1ngTcTestProjectMasterWPullRequests.id}"
             publisher = github {
                 githubUrl = "https://api.github.com"
                 authType = personalToken {
-                    token = "credentialsJSON:0964f9c9-8c50-44f2-9691-387a7ac025d3"
+                    token = "credentialsJSON:9746a541-2862-4203-a1e7-fbed268ff191"
                 }
             }
+            param("github_oauth_user", "dy1ng")
         }
     }
 
