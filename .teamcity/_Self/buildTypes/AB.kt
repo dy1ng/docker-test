@@ -8,6 +8,7 @@ object AB : BuildType({
     name = "A + B"
 
     type = BuildTypeSettings.Type.COMPOSITE
+    buildNumberPattern = "%buildN%"
 
     params {
         param("buildN", "${BuildA.depParamRefs.buildNumber}")
