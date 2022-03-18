@@ -9,6 +9,10 @@ object AB : BuildType({
 
     type = BuildTypeSettings.Type.COMPOSITE
 
+    params {
+        param("buildN", "${BuildA.depParamRefs.buildNumber}")
+    }
+
     vcs {
         root(_Self.vcsRoots.HttpsGithubComDy1ngTcTestProjectMasterWPullRequests)
 
