@@ -10,5 +10,4 @@ object Project : Project({
 
     buildType(ArtifactDependencyTest_ResolveArtifacts)
     buildType(ArtifactDependencyTest_DependentBuild)
-    buildType(ArtifactDependencyTest_GetArtifactsViaRest)
 })
