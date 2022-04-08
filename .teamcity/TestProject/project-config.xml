@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://www.jetbrains.com/teamcity/schemas/2021.1/project-config.xsd">
+  <name>Test project</name>
+  <parameters>
+    <param name="bitbucket.Username" value="dy1ng" />
+    <param name="system.bitbucket.AppPassword" value="credentialsJSON:685b014c-35a2-48cb-b305-296e3f4ee59f" spec="password description='Bitbucket.org App Password' display='hidden'" />
+    <param name="test.secret.param" value="credentialsJSON:accf70ae-e41b-414d-8dbc-d15b304edf1d" spec="password display='normal'" />
+  </parameters>
+  <project-extensions>
+    <extension id="PROJECT_EXT_1" type="versionedSettings">
+      <parameters>
+        <param name="buildSettings" value="ALWAYS_USE_CURRENT" />
+        <param name="credentialsStorageType" value="credentialsJSON" />
+        <param name="enabled" value="true" />
+        <param name="rootId" value="TestProject_HttpsGithubComDy1ngDockerTestRefsHeadsMaster" />
+        <param name="showChanges" value="false" />
+      </parameters>
+    </extension>
+    <extension id="PROJECT_EXT_12" type="CloudImage">
+      <parameters>
+        <param name="$datacenterId" value="datacenter-21" />
+        <param name="agent_pool_id" value="1" />
+        <param name="behaviour" value="FRESH_CLONE" />
+        <param name="customizationSpec" value="labs.intellij.net" />
+        <param name="folder" value="group-v1525885" />
+        <param name="maxInstances" value="3" />
+        <param name="nickname" value="agent-freebsd" />
+        <param name="pool" value="resgroup-1288981" />
+        <param name="profileId" value="vmw-1" />
+        <param name="snapshot" value="__CURRENT_STATE__" />
+        <param name="source-id" value="agent-freebsd" />
+        <param name="sourceVmName" value="agent-freebsd-master-261" />
+      </parameters>
+    </extension>
+    <extension id="PROJECT_EXT_13" type="CloudImage">
+      <parameters>
+        <param name="agentNamePrefix" value="Kube-agent" />
+        <param name="agent_pool_id" value="1" />
+        <param name="customPodTemplate"><![CDATA[apiVersion: v1
+kind: Pod
+metadata:
+  name: jetbrains-teamcity-agent-1
+  namespace: default
+spec:
+  containers:
+  - env:
+    - name: TC_K8S_SERVER_UUID
+      value: d360740e-79f4-494d-bc35-b7c01eda5148
+    - name: TC_K8S_SERVER_URL
+      value: http://unit-1592.labs.intellij.net:8111
+    - name: SERVER_URL
+      value: http://unit-1592.labs.intellij.net:8111
+    - name: TEAMCITY_KUBERNETES_IMAGE_NAME
+      value: "teamcity-test"
+    - name: TEAMCITY_KUBERNETES_CLOUD_PROFILE_ID
+      value: kube-1
+    - name: TEAMCITY_KUBERNETES_INSTANCE_NAME
+      value: teamcity-test-2
+    - name: DOCKER_IN_DOCKER
+      value: start
+    image: jetbrains/teamcity-agent:2019.2.2-linux
+    securityContext:
+      privileged: true
+    imagePullPolicy: IfNotPresent
+    name: jetbrains-teamcity-agent-1
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File]]></param>
+        <param name="imageDescription" value="Custom pod template" />
+        <param name="imageInstanceLimit" value="3" />
+        <param name="podTemplateMode" value="custom-pod-template" />
+        <param name="profileId" value="kube-1" />
+        <param name="source-id" value="Kube-agent" />
+        <param name="sourceDeployment" value="jetbrains-teamcity-agent-1" />
+      </parameters>
+    </extension>
+    <extension id="PROJECT_EXT_2" type="OAuthProvider">
+      <parameters>
+        <param name="clientId" value="ed5d667f0acfec841512ad0d0299bcf1737351171ee11a70e72984817962f7ec" />
+        <param name="displayName" value="GitLab.com" />
+        <param name="providerType" value="GitLabCom" />
+        <param name="secure:clientSecret" value="credentialsJSON:2d084fb6-3420-400d-afa8-30190daaf037" />
+      </parameters>
+    </extension>
+    <extension id="PROJECT_EXT_3" type="OAuthProvider">
+      <parameters>
+        <param name="clientId" value="6409eb847b021a59a18b" />
+        <param name="defaultTokenScope" value="public_repo,repo,repo:status,write:repo_hook" />
+        <param name="displayName" value="GitHub.com" />
+        <param name="gitHubUrl" value="https://github.com/" />
+        <param name="providerType" value="GitHub" />
+        <param name="secure:clientSecret" value="credentialsJSON:68a738f4-21af-48bb-bedd-cedc938f694c" />
+      </parameters>
+    </extension>
+    <extension id="PROJECT_EXT_4" type="OAuthProvider">
+      <parameters>
+        <param name="displayName" value="Docker Registry" />
+        <param name="providerType" value="Docker" />
+        <param name="repositoryUrl" value="https://docker.io" />
+        <param name="secure:userPass" value="credentialsJSON:b9428692-a455-4e1c-a8a1-cc7f67b6f6d5" />
+        <param name="userName" value="dy1ng" />
+      </parameters>
+    </extension>
+    <extension id="PROJECT_EXT_5" type="storage_settings">
+      <parameters>
+        <param name="aws.access.key.id" value="AKIA5JH2VERVDU5DXUML" />
+        <param name="aws.credentials.type" value="aws.access.keys" />
+        <param name="aws.environment" value="custom" />
+        <param name="aws.external.id" value="TeamCity-server-9ce8ebef-0ec7-4e50-9c53-1567435d2738" />
+        <param name="aws.region.name" value="us-east-2" />
+        <param name="aws.service.endpoint" value="https://s3.us-east-2.amazonaws.com" />
+        <param name="secure:aws.secret.access.key" value="credentialsJSON:27183c04-9f97-472d-85de-c9d15232abab" />
+        <param name="storage.name" value="test.project_s3" />
+        <param name="storage.s3.bucket.name" value="mefremov-test" />
+        <param name="storage.s3.upload.presignedUrl.enabled" value="true" />
+        <param name="storage.type" value="S3_storage" />
+      </parameters>
+    </extension>
+    <extension id="PROJECT_EXT_7" type="sonar-qube">
+      <parameters>
+        <param name="id" value="228f49a3-39ae-4cc2-a15f-62c2475894f4" />
+        <param name="login" value="vasya" />
+        <param name="name" value="test" />
+        <param name="password" value="zxxb4f24b12694403eb" />
+        <param name="url" value="localhost:12345" />
+      </parameters>
+    </extension>
+    <extension id="amazon-1" type="CloudProfile">
+      <parameters>
+        <param name="agentPushPreset" value="" />
+        <param name="cloud-code" value="amazon" />
+        <param name="description" value="" />
+        <param name="enabled" value="true" />
+        <param name="max-running-instances" value="10" />
+        <param name="name" value="AWS EC2" />
+        <param name="next-hour" value="" />
+        <param name="not-checked" value="" />
+        <param name="profileId" value="amazon-1" />
+        <param name="profileServerUrl" value="" />
+        <param name="region" value="us-east-1" />
+        <param name="secure:access-id" value="credentialsJSON:53f339d3-2c9a-4af6-b5f8-332d009bfb41" />
+        <param name="secure:secret-key" value="credentialsJSON:81debfa5-9502-4e09-ac7a-eb668a33f40a" />
+        <param name="terminate-idle-time" value="30" />
+        <param name="total-work-time" value="" />
+      </parameters>
+    </extension>
+    <extension id="kube-1" type="CloudProfile">
+      <parameters>
+        <param name="agentPushPreset" value="" />
+        <param name="apiServerUrl" value="https://kubernetes.docker.internal:6443" />
+        <param name="authStrategy" value="token" />
+        <param name="cloud-code" value="kube" />
+        <param name="description" value="" />
+        <param name="eksAccessId" value="" />
+        <param name="eksClusterName" value="" />
+        <param name="enabled" value="true" />
+        <param name="idpIssuerUrl" value="" />
+        <param name="name" value="Kubernetes - Test project" />
+        <param name="namespace" value="" />
+        <param name="next-hour" value="" />
+        <param name="oidcClientId" value="" />
+        <param name="profileId" value="kube-1" />
+        <param name="profileInstanceLimit" value="" />
+        <param name="profileServerUrl" value="" />
+        <param name="secure:authToken" value="credentialsJSON:2717bd3e-e231-42d1-87e9-bd1eff7bc3ff" />
+        <param name="secure:caCertData" value="" />
+        <param name="secure:clientCertData" value="" />
+        <param name="secure:eksSecretKey" value="" />
+        <param name="secure:oidcClientSecret" value="" />
+        <param name="secure:oidcRefreshToken" value="" />
+        <param name="secure:password" value="" />
+        <param name="system.cloud.profile_id" value="kube-1" />
+        <param name="terminate-idle-time" value="30" />
+        <param name="total-work-time" value="" />
+        <param name="username" value="" />
+      </parameters>
+    </extension>
+    <extension id="repository-nuget-test_feed" type="PackageRepository">
+      <parameters>
+        <param name="description" value="" />
+        <param name="name" value="test_feed" />
+        <param name="type" value="nuget" />
+      </parameters>
+    </extension>
+    <extension id="vmw-1" type="CloudProfile">
+      <parameters>
+        <param name="agentPushPreset" value="" />
+        <param name="cloud-code" value="vmw" />
+        <param name="description" value="" />
+        <param name="enabled" value="true" />
+        <param name="force_trust_manager" value="true" />
+        <param name="helperFieldId" value="folder" />
+        <param name="helperFieldValue" value="group-v1525885" />
+        <param name="image" value="agent-freebsd-master-261" />
+        <param name="name" value="vSphere - Test Project" />
+        <param name="next-hour" value="" />
+        <param name="profileId" value="vmw-1" />
+        <param name="profileServerUrl" value="" />
+        <param name="secure:vmware_password" value="credentialsJSON:cb7088b7-81bb-4077-af82-2544da8535be" />
+        <param name="system.cloud.profile_id" value="vmw-1" />
+        <param name="terminate-idle-time" value="30" />
+        <param name="total-work-time" value="" />
+        <param name="vmware_profile_instance_limit" value="10" />
+        <param name="vmware_server_url" value="https://vcenter-srv.labs.intellij.net/sdk" />
+        <param name="vmware_username" value="LABS\Mikhail.Efremov" />
+      </parameters>
+    </extension>
+  </project-extensions>
+  <cleanup>
+    <policy type="days" cleanup-level="EVERYTHING">
+      <parameters>
+        <param name="keepDays.count" value="100" />
+      </parameters>
+    </policy>
+    <policy type="days" cleanup-level="ARTIFACTS">
+      <parameters>
+        <param name="artifactPatterns"><![CDATA[-:*
++:*.tar]]></param>
+        <param name="keepDays.count" value="50" />
+      </parameters>
+    </policy>
+  </cleanup>
+</project>
+

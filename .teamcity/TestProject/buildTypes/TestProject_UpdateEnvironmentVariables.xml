@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<build-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://www.jetbrains.com/teamcity/schemas/2021.1/project-config.xsd">
+  <name>Update Environment Variables</name>
+  <description />
+  <settings ref="TestProject_BuildCommitStatusPublisher">
+    <disabled-settings>
+      <setting-ref ref="RUNNER_1" />
+      <setting-ref ref="RUNNER_25" />
+      <setting-ref ref="RUNNER_30" />
+    </disabled-settings>
+    <parameters />
+    <build-runners>
+      <runner id="RUNNER_25" name="export PATH" type="simpleRunner">
+        <parameters>
+          <param name="script.content"><![CDATA[echo "##teamcity[setParameter name='test' value='$0']"
+echo "Current PATH: $PATH"
+echo "Current env.PATH: %env.PATH%"
+export PATH=$PATH:~/opt/bin/npm/serverles]]></param>
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+      <runner id="RUNNER_30" name="source previous script" type="simpleRunner">
+        <parameters>
+          <param name="script.content" value="source %test%" />
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+      <runner id="RUNNER_32" name="" type="python-runner">
+        <parameters>
+          <param name="command" value="script" />
+          <param name="coverageArgs" value="--omit=*lib*" />
+          <param name="envTool" value="none" />
+          <param name="installToolPackage" value="true" />
+          <param name="isCoverageEnabled" value="false" />
+          <param name="isTestReportingEnabled" value="true" />
+          <param name="poetryExecutable" value="poetry" />
+          <param name="pythonVersion" value="python3" />
+          <param name="scriptContent"><![CDATA[import os
+
+path = os.environ["PATH"]
+print(path)
+os.environ["PATH"] = path + ":/opt/npm/serverless"
+print(os.environ["PATH"])
+print("%env.PATH%")]]></param>
+          <param name="teamcity.step.mode" value="default" />
+          <param name="virtualenvEnvName" value=".venv" />
+          <param name="virtualenvFile" value="requirements.txt" />
+        </parameters>
+      </runner>
+      <runner id="RUNNER_31" name="echo PATHs" type="simpleRunner">
+        <parameters>
+          <param name="script.content"><![CDATA[echo "Current PATH: $PATH"
+echo "Current env.PATH: %env.PATH%"
+echo "Checkout directory: %system.teamcity.build.checkoutDir%"
+echo "Current directory: $(pwd)"]]></param>
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+    </build-runners>
+    <vcs-settings />
+    <requirements />
+    <build-triggers />
+    <cleanup />
+  </settings>
+</build-type>
+

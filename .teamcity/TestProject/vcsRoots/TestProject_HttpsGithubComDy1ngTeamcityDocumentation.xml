@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vcs-root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="jetbrains.git" xsi:noNamespaceSchemaLocation="https://www.jetbrains.com/teamcity/schemas/2021.1/project-config.xsd">
+  <name>https://github.com/dy1ng/teamcity-documentation</name>
+  <param name="agentCleanFilesPolicy" value="ALL_UNTRACKED" />
+  <param name="agentCleanPolicy" value="ON_BRANCH_CHANGE" />
+  <param name="authMethod" value="PASSWORD" />
+  <param name="branch" value="refs/heads/mefremov-dev" />
+  <param name="ignoreKnownHosts" value="true" />
+  <param name="oauthProviderId" value="PROJECT_EXT_3" />
+  <param name="secure:password" value="credentialsJSON:9746a541-2862-4203-a1e7-fbed268ff191" />
+  <param name="submoduleCheckout" value="CHECKOUT" />
+  <param name="url" value="https://github.com/dy1ng/teamcity-documentation" />
+  <param name="useAlternates" value="USE_MIRRORS" />
+  <param name="username" value="dy1ng" />
+  <param name="usernameStyle" value="USERID" />
+</vcs-root>
+

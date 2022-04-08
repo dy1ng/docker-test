@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<build-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://www.jetbrains.com/teamcity/schemas/2021.1/project-config.xsd">
+  <name>SSH-Exec-Test</name>
+  <description />
+  <settings ref="TestProject_SimpleBuildTemplate">
+    <disabled-settings>
+      <setting-ref ref="vcsTrigger" />
+    </disabled-settings>
+    <parameters />
+    <build-runners>
+      <runner id="RUNNER_14" name="" type="ssh-exec-runner">
+        <parameters>
+          <param name="jetbrains.buildServer.deployer.targetUrl" value="172.31.136.48" />
+          <param name="jetbrains.buildServer.deployer.username" value="test-user" />
+          <param name="jetbrains.buildServer.sshexec.authMethod" value="DEFAULT_KEY" />
+          <param name="jetbrains.buildServer.sshexec.command" value="id" />
+          <param name="teamcity.step.mode" value="default" />
+        </parameters>
+      </runner>
+    </build-runners>
+    <vcs-settings />
+    <requirements>
+      <equals id="RQ_5" name="teamcity.agent.name" value="VSphere-Ubuntu-Agent-1" />
+    </requirements>
+    <build-triggers />
+    <cleanup />
+  </settings>
+</build-type>
+
