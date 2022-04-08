@@ -62,6 +62,7 @@ object Project : Project({
     params {
         password("system.bitbucket.AppPassword", "credentialsJSON:685b014c-35a2-48cb-b305-296e3f4ee59f", description = "Bitbucket.org App Password", display = ParameterDisplay.HIDDEN)
         param("bitbucket.Username", "dy1ng")
+        password("test.secret.param", "credentialsJSON:accf70ae-e41b-414d-8dbc-d15b304edf1d")
     }
 
     features {
