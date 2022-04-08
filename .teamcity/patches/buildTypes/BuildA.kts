@@ -62,6 +62,10 @@ changeBuildType(RelativeId("BuildA")) {
         update<ScriptBuildStep>(0) {
             id = "RUNNER_5"
             clearConditions()
+            scriptContent = """
+                echo %env.pass_for_docker%%
+                echo ${'$'}TEAMCITY_VERSION
+            """.trimIndent()
             dockerImage = ""
         }
     }
