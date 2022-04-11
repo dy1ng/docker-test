@@ -3,6 +3,9 @@
   <name>Simple .NET script</name>
   <description />
   <settings ref="TestProject_BuildCommitStatusPublisher">
+    <disabled-settings>
+      <setting-ref ref="RUNNER_1" />
+    </disabled-settings>
     <parameters />
     <build-runners />
     <vcs-settings />
