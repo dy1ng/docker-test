@@ -3,6 +3,9 @@
   <name>Docker-test</name>
   <description />
   <settings>
+    <disabled-settings>
+      <setting-ref ref="TRIGGER_1" />
+    </disabled-settings>
     <parameters>
       <param name="teamcity.build.serviceMessages.logOriginal" value="true" />
       <param name="test_param" value="default value" />
