@@ -7,7 +7,17 @@
       <setting-ref ref="RUNNER_1" />
     </disabled-settings>
     <parameters />
-    <build-runners />
+    <build-runners>
+      <runner id="RUNNER_11" name="" type="csharpScript">
+        <parameters>
+          <param name="csharpToolPath" value="%teamcity.tool.TeamCity.csi.DEFAULT%" />
+          <param name="scriptContent"><![CDATA[string version = Environment.GetEnvironmentVariable("TEAMCITY_VERSION");
+Console.WriteLine(version);]]></param>
+          <param name="scriptType" value="customScript" />
+          <param name="teamcity.step.mode" value="default" />
+        </parameters>
+      </runner>
+    </build-runners>
     <vcs-settings />
     <requirements />
     <build-triggers />
