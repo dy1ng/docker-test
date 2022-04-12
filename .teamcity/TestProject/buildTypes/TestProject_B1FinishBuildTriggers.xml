@@ -4,6 +4,7 @@
   <description />
   <settings ref="TestProject_SimpleBuildTemplate">
     <disabled-settings>
+      <setting-ref ref="TRIGGER_6" />
       <setting-ref ref="vcsTrigger" />
     </disabled-settings>
     <parameters>
