@@ -30,8 +30,7 @@
         <parameters>
           <param name="authenticationType" value="vcsRoot" />
           <param name="filterAuthorRole" value="MEMBER" />
-          <param name="filterTargetBranch"><![CDATA[+:master
-+:refs/heads/master]]></param>
+          <param name="filterTargetBranch" value="+:refs/heads/master" />
           <param name="providerType" value="github" />
           <param name="vcsRootId" value="TestProject_HttpsGithubComDy1ngTcTestProjectGit" />
         </parameters>
