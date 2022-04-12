@@ -9,7 +9,6 @@
       <option name="maximumNumberOfBuilds" value="1" />
     </options>
     <disabled-settings>
-      <setting-ref ref="TRIGGER_5" />
       <setting-ref ref="TRIGGER_6" />
       <setting-ref ref="vcsTrigger" />
     </disabled-settings>
