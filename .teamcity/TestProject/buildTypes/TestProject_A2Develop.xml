@@ -3,9 +3,6 @@
   <name>A2: Develop</name>
   <description />
   <settings ref="TestProject_SimpleBuildTemplate">
-    <disabled-settings>
-      <setting-ref ref="vcsTrigger" />
-    </disabled-settings>
     <parameters />
     <build-runners />
     <vcs-settings />
