@@ -49,9 +49,9 @@ sleep 10]]></param>
           <param name="use.custom.script" value="true" />
         </parameters>
       </runner>
-      <runner id="RUNNER_3" name="sleep 10 seconds" type="simpleRunner">
+      <runner id="RUNNER_3" name="sleep 20 seconds" type="simpleRunner">
         <parameters>
-          <param name="script.content" value="sleep 10" />
+          <param name="script.content" value="sleep 20" />
           <param name="teamcity.step.mode" value="default" />
           <param name="use.custom.script" value="true" />
         </parameters>
