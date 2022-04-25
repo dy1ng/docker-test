@@ -4,10 +4,11 @@
   <param name="agentCleanFilesPolicy" value="ALL_UNTRACKED" />
   <param name="agentCleanPolicy" value="ON_BRANCH_CHANGE" />
   <param name="authMethod" value="PASSWORD" />
-  <param name="branch" value="refs/heads/%dep_parameter%" />
+  <param name="branch" value="refs/heads/%default_branch%" />
   <param name="ignoreKnownHosts" value="true" />
   <param name="secure:password" value="credentialsJSON:19b447d6-628f-49e4-aad9-31bb547635b9" />
   <param name="submoduleCheckout" value="CHECKOUT" />
+  <param name="teamcity:branchSpec" value="%branch_spec%" />
   <param name="url" value="https://github.com/dy1ng/TC-Test-Project.git" />
   <param name="useAlternates" value="USE_MIRRORS" />
   <param name="username" value="dy1ng" />
