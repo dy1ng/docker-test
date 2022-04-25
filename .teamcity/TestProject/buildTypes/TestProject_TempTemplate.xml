@@ -3,6 +3,7 @@
   <name>temp template</name>
   <settings>
     <parameters>
+      <param name="branch_spec" value="+:refs/heads/feature-123" />
       <param name="default_branch" value="master" />
     </parameters>
     <build-runners />
