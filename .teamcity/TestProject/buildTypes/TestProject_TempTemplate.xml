@@ -2,7 +2,9 @@
 <template xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="43916747-7429-486d-ae6a-cd74ea00ba40" xsi:noNamespaceSchemaLocation="https://www.jetbrains.com/teamcity/schemas/2021.1/project-config.xsd">
   <name>temp template</name>
   <settings>
-    <parameters />
+    <parameters>
+      <param name="default_branch" value="master" />
+    </parameters>
     <build-runners />
     <vcs-settings>
       <vcs-entry-ref root-id="TestProject_HttpsGithubComDy1ngTcTestProjectGit3" />
